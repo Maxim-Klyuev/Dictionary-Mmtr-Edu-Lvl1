@@ -4,7 +4,7 @@ public interface DictionaryStorage {
 
     String showAllWords();
 
-    String translateOneWord(String userInput);
+    String translationOneWord(String key);
 
     void addWord(String userInput);
 

@@ -1,8 +1,21 @@
 package mmtr.klyuev.dictionary;
 
-public abstract class CheckMenuItems {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-    protected final String REPEAT = "Incorrect input. There is no such item in the menu. Repeat please.";
+@Component
+public class CheckMenuItems {
 
-    public abstract boolean checkOfMenuItemSelection(String userInput);
+    String template;
+
+    @Autowired
+    public void setTemplate(String template) {
+        this.template = template;
+    }
+
+    @Autowired
+    public boolean checkOfMenuItemSelection(String template, String userInput) {
+        boolean result = userInput.matches(template);
+        return result;
+    }
 }

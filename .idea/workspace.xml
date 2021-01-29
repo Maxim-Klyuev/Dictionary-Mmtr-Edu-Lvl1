@@ -4,7 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d229c573-5507-46bc-a7d2-4443cf60c742" name="Default Changelist" comment="" />
+    <list default="true" id="d229c573-5507-46bc-a7d2-4443cf60c742" name="Default Changelist" comment="Update pom.xml.">
+      <change afterPath="$PROJECT_DIR$/.idea/Dictionary-3.0-maven.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dict1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LatinDict.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dict2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DigitDict.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/CheckExitPointFromMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/CheckExitPointFromMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/CheckMenuItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/CheckMenuItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/CheckingDictionaryActionSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/CheckingDictionaryActionSelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/CheckingDictionarySelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/CheckingDictionarySelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/ConsoleMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/ConsoleMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/DictionaryMatchingCondition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/DictionaryMatchingCondition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/DictionaryMaven.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/DictionaryMaven.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/DictionaryStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/DictionaryStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/DictionaryStorageOnFileSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/DictionaryStorageOnFileSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/DigitDict.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/DigitDict.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/LatinDict.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mmtr/klyuev/dictionary/LatinDict.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,9 +48,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sia3-code" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.DictionaryMaven">
     <configuration name="DictionaryIDE" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -59,17 +83,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.DictionaryMaven" />
@@ -87,7 +100,23 @@
       <updated>1608903848069</updated>
       <workItem from="1608903849542" duration="34567000" />
       <workItem from="1609249901385" duration="380000" />
+      <workItem from="1609250618476" duration="1429000" />
+      <workItem from="1610352349870" duration="194000" />
+      <workItem from="1610353054978" duration="23000" />
+      <workItem from="1610358383240" duration="590000" />
+      <workItem from="1610359053760" duration="32744000" />
+      <workItem from="1610971736485" duration="14669000" />
+      <workItem from="1611058778573" duration="1864000" />
+      <workItem from="1611907791390" duration="3870000" />
     </task>
+    <task id="LOCAL-00001" summary="Update pom.xml.">
+      <created>1609250910783</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1609250910783</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,5 +132,10 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update pom.xml." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update pom.xml." />
   </component>
 </project>
