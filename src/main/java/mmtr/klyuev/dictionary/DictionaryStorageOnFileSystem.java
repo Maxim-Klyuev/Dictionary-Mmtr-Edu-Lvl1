@@ -21,7 +21,6 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 str = str + line + "\n";
-                if (!scanner.hasNextLine()) str = str + line;
             }
             scanner.close();
 
@@ -63,10 +62,9 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
     }
 
     @Override
-    public boolean deleteWord(String str) {
+    public void deleteWord(String str) {
         File temp = new File("Temp.txt");
         String s;
-        boolean deleteResult = false;
         try {
             scanner = new Scanner(latinDict);
             try (PrintWriter tempWriter = new PrintWriter(new FileWriter(temp))) {
@@ -75,7 +73,6 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
                     if (!s.trim().contains(str)) {
                         tempWriter.println(s);
                         tempWriter.flush();
-                        deleteResult = !s.contains(str);
                     }
                 }
             } catch (IOException e) {
@@ -88,6 +85,5 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
         }
         latinDict.delete();
         temp.renameTo(latinDict);
-        return deleteResult;
     }
 }

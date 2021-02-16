@@ -1,12 +1,9 @@
 package mmtr.klyuev.dictionary;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Scanner;
 import java.util.Formatter;
 
@@ -24,7 +21,7 @@ public class ConsoleMenu {
     private CheckMenuItems checkMenuItems;
 
     private Formatter formatter;
-    private Scanner in = new Scanner(System.in);
+    private Scanner in;
 
     private final String DELIMITER = "=========================================================================";
     private final String GREETING = "You are welcome by the translator.";
@@ -41,15 +38,14 @@ public class ConsoleMenu {
     private final String ADD = "Entry <%s> added.";
     private final String DELETE = "Key entry <%s> deleted.";
     private final String LATIN_ALPHABET = "Words can only be 4 characters long and these characters are Latin only.";
-    private final String DIGIT_ALPHABET = "Words can only be 5 characters long and these characters are digits only.";
+    private final String DIGIT_ALPHABET = "Words can only be 5 characters long and these characters are Digits only.";
     private final String EXIT = "2. Exit.";
     private final String BACK = "1. Back.";
-    private final String ONE_BACK = "1";
-    private final String TWO_EXIT = "2";
-    private final String ERROR_DELETE = "This word is not in the dictionary.";
     private final String REPEAT = "Incorrect input. There is no such item in the menu. Repeat please.";
-    private final String LATIN_ALPHABET_INC = "Incorrect input. Does not meet alphabet requirements.\nWords can only be 4 characters long and these characters are Latin only.";
-    private final String DIGIT_ALPHABET_INC = "Incorrect input. Does not meet alphabet requirements.\nWords can only be 5 characters long and these characters are digits only.";
+    private final String LATIN_ALPHABET_INC = "Incorrect input. Does not meet alphabet requirements." +
+            "\nWords can only be 4 characters long and these characters are Latin only.";
+    private final String DIGIT_ALPHABET_INC = "Incorrect input. Does not meet alphabet requirements." +
+            "\nWords can only be 5 characters long and these characters are digits only.";
 
     private void showTemplate(String str) {
         System.out.println(DELIMITER);
@@ -64,9 +60,10 @@ public class ConsoleMenu {
         formatter.close();
     }
 
-    private void correctSelection(String menuItemBar) {
+    private void correctSelection(String menuItemBar, String template) {
+        in = new Scanner(System.in);
         String userInput = in.nextLine().trim();
-        while (!checkMenuItems.checkOfMenuItemSelection(checkMenuItems.template, userInput)) {
+        while (!checkMenuItems.checkOfMenuItemSelection(template, userInput)) {
             System.out.println(REPEAT);
             System.out.println(menuItemBar);
             userInput = in.nextLine().trim();
@@ -78,56 +75,54 @@ public class ConsoleMenu {
         showTemplate(GREETING);
     }
 
-    @Value("%{checkMenuItems.checkDictionarySelection}")
     public void consoleShowDictionaryFiles() {
         showTemplate(DICTIONARIES);
-        correctSelection(DICTIONARIES + "\n" + DELIMITER );
+        correctSelection(DICTIONARIES + "\n" + DELIMITER, "^[1-3]{1}");
     }
 
-//    public void consoleShowMenu() {
-//        showTemplate(SELECT_ACT);
-//        correctSelection(new CheckMenuItems("^[1-6]{1}"), SELECT_ACT + "\n" + DELIMITER);
-//    }
-//
-//    public void consoleShowAllWords() {
-//        showTemplate(CONTENTS_DICT);
-//        System.out.println(dictionaryStorageOnFileSystem.showAllWords());
-//        showTemplate(BACK + "\n" + EXIT);
-//        correctSelection(new CheckMenuItems("^[1-2]{1}"), BACK + "\n" + EXIT + "\n" + DELIMITER);
-//    }
-//
-//    public void consoleShowTranslationOneWord() {
-//        showTemplate(ENTER_WORD_TRANSLATE + "\n" + LATIN_ALPHABET + "\n" + BACK + "\n" + EXIT);
-//        String userInput = in.nextLine().trim().toLowerCase();
-//        while (!userInput.equals(ONE_BACK) && !userInput.equals(TWO_EXIT)) {
-//            useFormatter(userInput, TRANSLATE);
-//            System.out.println(dictionaryStorageOnFileSystem.translationOneWord(userInput));
-//            showTemplate(ENTER_WORD_TRANSLATE + "\n" + LATIN_ALPHABET + "\n" + BACK + "\n" + EXIT);
-//            userInput = in.nextLine().trim().toLowerCase();
-//        }
-//    }
-//
-//    public void consoleAddWord() {
-//        showTemplate(ENTER_WORD_ADD + "\n" + BACK + "\n" + EXIT);
-//        String userInput = in.nextLine().trim().toLowerCase();
-//        while (!userInput.equals(ONE_BACK) && !userInput.equals(TWO_EXIT)) {
-//            if (dictionaryMatchingCondition.checkOfDictionaryResponse(userInput)) {
-//                dictionaryStorageOnFileSystem.addWord(userInput);
-//                useFormatter(userInput, ADD);
-//            } else System.out.println(LATIN_ALPHABET_INC);
-//            showTemplate(ENTER_WORD_ADD + "\n" + BACK + "\n" + EXIT);
-//            userInput = in.nextLine().trim().toLowerCase();
-//        }
-//    }
+    public void consoleShowMenu() {
+        showTemplate(SELECT_ACT);
+        correctSelection(SELECT_ACT + "\n" + DELIMITER, "^[1-6]{1}");
+    }
+
+    public void consoleShowAllWords() {
+        showTemplate(CONTENTS_DICT);
+        System.out.println(dictionaryStorageOnFileSystem.showAllWords());
+        showTemplate(BACK + "\n" + EXIT);
+        correctSelection(BACK + "\n" + EXIT + "\n" + DELIMITER, "^[1-2]{1}");
+    }
+
+    public void consoleShowTranslationOneWord() {
+        showTemplate(ENTER_WORD_TRANSLATE + "\n" + LATIN_ALPHABET + "\n" + BACK + "\n" + EXIT);   // latin/digit
+        String userInput = in.nextLine().trim().toLowerCase();
+        while (!userInput.equals("1") && !userInput.equals("2")) {
+            useFormatter(userInput, TRANSLATE);
+            System.out.println(dictionaryStorageOnFileSystem.translationOneWord(userInput));
+            showTemplate(ENTER_WORD_TRANSLATE + "\n" + LATIN_ALPHABET + "\n" + BACK + "\n" + EXIT);
+            userInput = in.nextLine().trim().toLowerCase();
+        }
+    }
+
+    public void consoleAddWord() {
+        String template = "^[a-z]{4}";
+        showTemplate(ENTER_WORD_ADD + "\n" + BACK + "\n" + EXIT);
+        String userInput = in.nextLine().trim().toLowerCase();
+        while (!userInput.equals("1") && !userInput.equals("2")) {
+            if (dictionaryMatchingCondition.checkOfDictionaryResponse(template, userInput)) {
+                dictionaryStorageOnFileSystem.addWord(userInput);
+                useFormatter(userInput, ADD);
+            } else System.out.println(LATIN_ALPHABET_INC);          // latin/digit
+            showTemplate(ENTER_WORD_ADD + "\n" + BACK + "\n" + EXIT);
+            userInput = in.nextLine().trim().toLowerCase();
+        }
+    }
 
     public void consoleDeleteWord() {
         showTemplate(ENTER_WORD_DEL + "\n" + BACK + "\n" + EXIT);
         String userInput = in.nextLine().trim().toLowerCase();
-        while (!userInput.equals(ONE_BACK) && !userInput.equals(TWO_EXIT)) {
-            if (dictionaryStorageOnFileSystem.deleteWord(userInput)) {
-                dictionaryStorageOnFileSystem.deleteWord(userInput);
-                useFormatter(userInput, DELETE);
-            } else System.out.println(ERROR_DELETE);
+        while (!userInput.equals("1") && !userInput.equals("2")) {
+            dictionaryStorageOnFileSystem.deleteWord(userInput);
+            useFormatter(userInput, DELETE);
             showTemplate(ENTER_WORD_DEL + "\n" + BACK + "\n" + EXIT);
             userInput = in.nextLine().trim().toLowerCase();
         }
@@ -135,6 +130,12 @@ public class ConsoleMenu {
 
     public void runConsole() {
         consoleGreeting();
+        consoleShowDictionaryFiles();
+        consoleShowMenu();
+        consoleShowAllWords();
+        consoleShowTranslationOneWord();
+        consoleAddWord();
+        consoleDeleteWord();
     }
 }
 

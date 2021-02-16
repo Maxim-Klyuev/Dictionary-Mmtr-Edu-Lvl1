@@ -8,5 +8,5 @@ public interface DictionaryStorage {
 
     void addWord(String userInput);
 
-    boolean deleteWord(String userInput);
+    void deleteWord(String userInput);
 }
