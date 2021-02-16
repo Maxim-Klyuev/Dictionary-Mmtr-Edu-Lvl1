@@ -1,6 +1,5 @@
 package mmtr.klyuev.dictionary;
 
-import java.io.File;
 
 public interface DictionaryStorage {
 

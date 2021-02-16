@@ -72,29 +72,29 @@ public class ConsoleMenu {
     }
 
 
-    public void consoleGreeting() {
+    private void consoleGreeting() {
         showTemplate(GREETING);
     }
 
 
-    public void consoleShowDictionaryFiles() {
+    private void consoleShowDictionaryFiles() {
         showTemplate(DICTIONARIES);
         correctSelection(DICTIONARIES + "\n" + DELIMITER, "^[1-3]{1}");
     }
 
-    public void consoleShowMenu() {
+    private void consoleShowMenu() {
         showTemplate(SELECT_ACT);
         correctSelection(SELECT_ACT + "\n" + DELIMITER, "^[1-6]{1}");
     }
 
-    public void consoleShowAllWords() {
+    private void consoleShowAllWords() {
         showTemplate(CONTENTS_DICT);
         System.out.println(dictionaryStorageOnFileSystem.showAllWords());
         showTemplate(BACK + "\n" + EXIT);
         correctSelection(BACK + "\n" + EXIT + "\n" + DELIMITER, "^[1-2]{1}");
     }
 
-    public void consoleShowTranslationOneWord() {
+    private void consoleShowTranslationOneWord() {
         showTemplate(ENTER_WORD_TRANSLATE + "\n" + LATIN_ALPHABET + "\n" + BACK + "\n" + EXIT);   // latin/digit
         String userInput = in.nextLine().trim().toLowerCase();
         while (!userInput.equals("1") && !userInput.equals("2")) {
@@ -105,7 +105,7 @@ public class ConsoleMenu {
         }
     }
 
-    public void consoleAddWord() {
+    private void consoleAddWord() {
         String template = "^[a-z]{4}";
         showTemplate(ENTER_WORD_ADD + "\n" + BACK + "\n" + EXIT);
         String userInput = in.nextLine().trim().toLowerCase();
@@ -119,7 +119,7 @@ public class ConsoleMenu {
         }
     }
 
-    public void consoleDeleteWord() {
+    private void consoleDeleteWord() {
         showTemplate(ENTER_WORD_DEL + "\n" + BACK + "\n" + EXIT);
         String userInput = in.nextLine().trim().toLowerCase();
         while (!userInput.equals("1") && !userInput.equals("2")) {
