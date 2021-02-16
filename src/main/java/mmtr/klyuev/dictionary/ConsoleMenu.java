@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.Scanner;
 import java.util.Formatter;
+import java.util.Scanner;
 
 @Component
 @Scope("prototype")
@@ -60,6 +60,7 @@ public class ConsoleMenu {
         formatter.close();
     }
 
+
     private void correctSelection(String menuItemBar, String template) {
         in = new Scanner(System.in);
         String userInput = in.nextLine().trim();
@@ -74,6 +75,7 @@ public class ConsoleMenu {
     public void consoleGreeting() {
         showTemplate(GREETING);
     }
+
 
     public void consoleShowDictionaryFiles() {
         showTemplate(DICTIONARIES);
@@ -132,10 +134,10 @@ public class ConsoleMenu {
         consoleGreeting();
         consoleShowDictionaryFiles();
         consoleShowMenu();
-        consoleShowAllWords();
-        consoleShowTranslationOneWord();
-        consoleAddWord();
-        consoleDeleteWord();
+//        consoleShowAllWords();
+//        consoleShowTranslationOneWord();
+//        consoleAddWord();
+//        consoleDeleteWord();
     }
 }
 
