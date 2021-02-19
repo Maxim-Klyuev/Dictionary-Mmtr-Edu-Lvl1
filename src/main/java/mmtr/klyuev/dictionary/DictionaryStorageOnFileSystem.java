@@ -1,25 +1,25 @@
 package mmtr.klyuev.dictionary;
 
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-@Component
-@Scope("prototype")
 public class DictionaryStorageOnFileSystem implements DictionaryStorage {
-    private File latinDict = new File("LatinDict.txt");
-    private File digitDict = new File("DigitDict.txt");
+
+    private File dictionary;
+
+    DictionaryStorageOnFileSystem(String filePath) {
+        dictionary = new File(filePath);
+    }
+
     private Scanner scanner;
 
     @Override
     public String showAllWords() {
         String str = "";
         try {
-            scanner = new Scanner(latinDict); // latin/digit
+            scanner = new Scanner(dictionary);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 str = str + line + "\n";
@@ -38,7 +38,7 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
     public String translationOneWord(String key) {
         Map<String, String> map = new HashMap<>();
         try {
-            scanner = new Scanner(latinDict);    // latin/digit
+            scanner = new Scanner(dictionary);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
                 String args[] = line.split(" ");
@@ -54,7 +54,7 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
 
     @Override
     public void addWord(String str) {
-        try (FileWriter writer = new FileWriter(latinDict, true)) {    // latin/digit
+        try (FileWriter writer = new FileWriter(dictionary, true)) {
             writer.write(str + "\n");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -68,7 +68,7 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
         File temp = new File("Temp.txt");
         String s;
         try {
-            scanner = new Scanner(latinDict);               //latin/digit
+            scanner = new Scanner(dictionary);
             try (PrintWriter tempWriter = new PrintWriter(new FileWriter(temp))) {
                 while (scanner.hasNextLine()) {
                     s = scanner.nextLine();
@@ -85,7 +85,7 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
         } finally {
             scanner.close();
         }
-        latinDict.delete();
-        temp.renameTo(latinDict);
+        dictionary.delete();
+        temp.renameTo(dictionary);
     }
 }

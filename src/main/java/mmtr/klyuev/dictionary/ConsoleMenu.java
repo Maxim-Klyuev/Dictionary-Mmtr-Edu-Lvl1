@@ -1,24 +1,27 @@
 package mmtr.klyuev.dictionary;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.List;
 import java.util.Scanner;
 
 @Component
-@Scope("prototype")
 public class ConsoleMenu {
 
-    @Autowired
-    private DictionaryStorage dictionaryStorageOnFileSystem;
+    private List<DictionaryStorage> dictionariesList;
 
-    @Autowired
     private DictionaryMatchingCondition dictionaryMatchingCondition;
 
-    @Autowired
     private CheckMenuItems checkMenuItems;
+
+    public ConsoleMenu(List<DictionaryStorage> dictionariesList, DictionaryMatchingCondition dictionaryMatchingCondition, CheckMenuItems checkMenuItems) {
+        this.dictionariesList = dictionariesList;
+        this.dictionaryMatchingCondition = dictionaryMatchingCondition;
+        this.checkMenuItems = checkMenuItems;
+    }
 
     private Formatter formatter;
     private Scanner in;
@@ -61,15 +64,16 @@ public class ConsoleMenu {
     }
 
 
-    private void correctSelection(String menuItemBar, String template) {
-        in = new Scanner(System.in);
-        String userInput = in.nextLine().trim();
-        while (!checkMenuItems.checkOfMenuItemSelection(template, userInput)) {
-            System.out.println(REPEAT);
-            System.out.println(menuItemBar);
-            userInput = in.nextLine().trim();
-        }
-    }
+//    private String correctSelection(String menuItemBar, String template) {
+//        in = new Scanner(System.in);
+//        String userInput = in.nextLine().trim();
+////        while (!checkMenuItems.checkOfMenuItemSelection(template, userInput)) {
+////            System.out.println(REPEAT);
+////            System.out.println(menuItemBar);
+////            userInput = in.nextLine().trim();
+////        }
+//        return userInput;
+//    }
 
 
     private void consoleGreeting() {
@@ -77,64 +81,71 @@ public class ConsoleMenu {
     }
 
 
-    private void consoleShowDictionaryFiles() {
+    private int consoleShowDictionaryFiles() {
         showTemplate(DICTIONARIES);
-        correctSelection(DICTIONARIES + "\n" + DELIMITER, "^[1-3]{1}");
+        in = new Scanner(System.in);
+        String userInput = in.nextLine();
+        int i = Integer.parseInt(userInput) - 1;
+        return i;
+//        correctSelection(DICTIONARIES + "\n" + DELIMITER, "^[1-3]{1}");
     }
 
-    private void consoleShowMenu() {
-        showTemplate(SELECT_ACT);
-        correctSelection(SELECT_ACT + "\n" + DELIMITER, "^[1-6]{1}");
-    }
+//    private void consoleShowMenu() {
+//        showTemplate(SELECT_ACT);
+////        correctSelection(SELECT_ACT + "\n" + DELIMITER, "^[1-6]{1}");
+//    }
 
     private void consoleShowAllWords() {
         showTemplate(CONTENTS_DICT);
-        System.out.println(dictionaryStorageOnFileSystem.showAllWords());
-        showTemplate(BACK + "\n" + EXIT);
-        correctSelection(BACK + "\n" + EXIT + "\n" + DELIMITER, "^[1-2]{1}");
+        int i = consoleShowDictionaryFiles();
+        System.out.println(dictionariesList.get(i).showAllWords());
+
+     //   showTemplate(BACK + "\n" + EXIT);
+//        correctSelection(BACK + "\n" + EXIT + "\n" + DELIMITER, "^[1-2]{1}");
     }
 
-    private void consoleShowTranslationOneWord() {
-        showTemplate(ENTER_WORD_TRANSLATE + "\n" + LATIN_ALPHABET + "\n" + BACK + "\n" + EXIT);   // latin/digit
-        String userInput = in.nextLine().trim().toLowerCase();
-        while (!userInput.equals("1") && !userInput.equals("2")) {
-            useFormatter(userInput, TRANSLATE);
-            System.out.println(dictionaryStorageOnFileSystem.translationOneWord(userInput));
-            showTemplate(ENTER_WORD_TRANSLATE + "\n" + LATIN_ALPHABET + "\n" + BACK + "\n" + EXIT);
-            userInput = in.nextLine().trim().toLowerCase();
-        }
-    }
-
-    private void consoleAddWord() {
-        String template = "^[a-z]{4}";
-        showTemplate(ENTER_WORD_ADD + "\n" + BACK + "\n" + EXIT);
-        String userInput = in.nextLine().trim().toLowerCase();
-        while (!userInput.equals("1") && !userInput.equals("2")) {
-            if (dictionaryMatchingCondition.checkOfDictionaryResponse(template, userInput)) {
-                dictionaryStorageOnFileSystem.addWord(userInput);
-                useFormatter(userInput, ADD);
-            } else System.out.println(LATIN_ALPHABET_INC);          // latin/digit
-            showTemplate(ENTER_WORD_ADD + "\n" + BACK + "\n" + EXIT);
-            userInput = in.nextLine().trim().toLowerCase();
-        }
-    }
-
-    private void consoleDeleteWord() {
-        showTemplate(ENTER_WORD_DEL + "\n" + BACK + "\n" + EXIT);
-        String userInput = in.nextLine().trim().toLowerCase();
-        while (!userInput.equals("1") && !userInput.equals("2")) {
-            dictionaryStorageOnFileSystem.deleteWord(userInput);
-            useFormatter(userInput, DELETE);
-            showTemplate(ENTER_WORD_DEL + "\n" + BACK + "\n" + EXIT);
-            userInput = in.nextLine().trim().toLowerCase();
-        }
-    }
+//    private void consoleShowTranslationOneWord() {
+//        showTemplate(ENTER_WORD_TRANSLATE + "\n" + LATIN_ALPHABET + "\n" + BACK + "\n" + EXIT);   // latin/digit
+//        String userInput = in.nextLine().trim().toLowerCase();
+//        while (!userInput.equals("1") && !userInput.equals("2")) {
+//            useFormatter(userInput, TRANSLATE);
+//            System.out.println(dictionaryStorageOnFileSystem.translationOneWord(userInput));
+//            showTemplate(ENTER_WORD_TRANSLATE + "\n" + LATIN_ALPHABET + "\n" + BACK + "\n" + EXIT);
+//            userInput = in.nextLine().trim().toLowerCase();
+//        }
+//    }
+//
+//    private void consoleAddWord() {
+//        String template = "^[a-z]{4}";
+//        showTemplate(ENTER_WORD_ADD + "\n" + BACK + "\n" + EXIT);
+//        String userInput = in.nextLine().trim().toLowerCase();
+//        while (!userInput.equals("1") && !userInput.equals("2")) {
+//            if (dictionaryMatchingCondition.checkOfDictionaryResponse(template, userInput)) {
+//                dictionaryStorageOnFileSystem.addWord(userInput);
+//                useFormatter(userInput, ADD);
+//            } else System.out.println(LATIN_ALPHABET_INC);          // latin/digit
+//            showTemplate(ENTER_WORD_ADD + "\n" + BACK + "\n" + EXIT);
+//            userInput = in.nextLine().trim().toLowerCase();
+//        }
+//    }
+//
+//    private void consoleDeleteWord() {
+//        showTemplate(ENTER_WORD_DEL + "\n" + BACK + "\n" + EXIT);
+//        String userInput = in.nextLine().trim().toLowerCase();
+//        while (!userInput.equals("1") && !userInput.equals("2")) {
+//            dictionaryStorageOnFileSystem.deleteWord(userInput);
+//            useFormatter(userInput, DELETE);
+//            showTemplate(ENTER_WORD_DEL + "\n" + BACK + "\n" + EXIT);
+//            userInput = in.nextLine().trim().toLowerCase();
+//        }
+//    }
 
     public void runConsole() {
-        consoleGreeting();
-        consoleShowDictionaryFiles();
-        consoleShowMenu();
-//        consoleShowAllWords();
+    //    consoleGreeting();
+    //    consoleShowDictionaryFiles();
+
+//        consoleShowMenu();
+        consoleShowAllWords();
 //        consoleShowTranslationOneWord();
 //        consoleAddWord();
 //        consoleDeleteWord();
