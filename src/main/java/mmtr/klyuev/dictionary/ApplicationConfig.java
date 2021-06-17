@@ -20,4 +20,6 @@ public class ApplicationConfig {
     DictionaryStorage digitDictionary(@Value("${digitDictionary}") String pathName) {
         return new DictionaryStorageOnFileSystem(pathName);
     }
+
+
 }

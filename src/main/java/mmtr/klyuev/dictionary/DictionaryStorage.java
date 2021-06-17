@@ -3,11 +3,11 @@ package mmtr.klyuev.dictionary;
 
 public interface DictionaryStorage {
 
-    String showAllWords();
+    String findAllWords();
 
-    String translationOneWord(String key);
+    String findWord(String word);
 
-    void addWord(String userInput);
+    void addWord(String record);
 
-    void deleteWord(String userInput);
+    void deleteWord(String word);
 }

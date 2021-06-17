@@ -2,7 +2,7 @@ package mmtr.klyuev.dictionary;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class DictionaryMaven {
+public class DictionaryRun {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);

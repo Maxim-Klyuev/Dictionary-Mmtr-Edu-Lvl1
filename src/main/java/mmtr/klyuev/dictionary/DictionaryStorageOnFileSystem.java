@@ -16,7 +16,7 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
     private Scanner scanner;
 
     @Override
-    public String showAllWords() {
+    public String findAllWords() {
         String str = "";
         try {
             scanner = new Scanner(dictionary);
@@ -35,7 +35,7 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
     }
 
     @Override
-    public String translationOneWord(String key) {
+    public String findWord(String word) {
         Map<String, String> map = new HashMap<>();
         try {
             scanner = new Scanner(dictionary);
@@ -49,13 +49,14 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
         } finally {
             scanner.close();
         }
-        return map.get(key);
+        return map.get(word);
     }
 
     @Override
-    public void addWord(String str) {
+    public void addWord(String record) {
         try (FileWriter writer = new FileWriter(dictionary, true)) {
-            writer.write(str + "\n");
+
+            writer.write(record + "\n");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -64,7 +65,7 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
     }
 
     @Override
-    public void deleteWord(String str) {
+    public void deleteWord(String word) {
         File temp = new File("Temp.txt");
         String s;
         try {
@@ -72,7 +73,9 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
             try (PrintWriter tempWriter = new PrintWriter(new FileWriter(temp))) {
                 while (scanner.hasNextLine()) {
                     s = scanner.nextLine();
-                    if (!s.trim().contains(str)) {
+                    String[] keyValue = s.split(" ");
+                    String value = keyValue[0];
+                    if (!value.trim().equals(word)) {
                         tempWriter.println(s);
                         tempWriter.flush();
                     }
