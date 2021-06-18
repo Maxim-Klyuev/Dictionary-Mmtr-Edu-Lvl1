@@ -1,1 +1,1 @@
-# Dictionary-3.0-maven
+# Spring Core
