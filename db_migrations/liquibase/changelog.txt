@@ -1,33 +1,6 @@
 Liquibase Core Changelog
 ===========================================
 
-Changes in version 4.4.0 (2021.06.08)
-- Refactor Configuration API
--- [PRO] including native use of Environment variables
-- Refactor Command API
-- Rewrote CLI to use new library
--- including new command options and help content
-- Fixes an issue with Maven logs and username password (#1859)
-- Fixes an issue with resolving properties files (#1723)
-- Fixes an issue with diffChangelog dependency order (#1722)
-- Fixes an issue with generating changlogs with DB2 on z/OS (#1506)
-- Fixes an issue with long table names in Postgres (#1483)
-- Fixes an issue with update flags for Postegres(#1213)
-- Fixes an issue with loadData and loadUpdateData(#964)
-
-Changes in version 4.3.5 (2021.04.29)
-- Better error handling in runWith=sqlplus when user doesn't have create/drop table permissions
-
-Changes in version 4.3.4 (2021.04.15)
-- Reverts changes from #1722 because they broke other diffChangeLog/generateChangeLog use cases.
-
-Changes in version 4.3.3 (2021.04.09)
-- Fixes an issue with changelogsync and hub
-- Fixes an issue with diff and NullPointerException (#1631)
-- Fixes an issue with NullPointerException and DateTimeType (#1366)
-- Fixes an issue with maven resolving/using properties file (#1723)
-- Fixes an issue with diffChangeLog and addColumn -> addPrimaryKey ordering (#1722)
-
 Changes in version 4.3.2 (2021.03.25)
 
 - Added new changelogSyncToTag command #1133
@@ -964,7 +937,7 @@ Changes in version 3.3.3 (2015.04.28)
 -  [CORE-2218] - Regression on modifyDataType : VARCHAR2 was supported on 3.2...and fails on 3.3
 -  [CORE-2239] - Remarks attribute in renameColumn causes parse error
 -  [CORE-2240] - setDropFirst(true) still broken on empty database
--  [CORE-2262] - 3.3.2 ant task dies on NPE in ChangeLogParameters
+-  [CORE-2262] - 3.3.2 ant project dies on NPE in ChangeLogParameters
 -  [CORE-2263] - Index Snapshot - doesn't include upper cased name indexes when db is NOT case sensitive
 -  [CORE-2274] - Ant Upade Task does not consider changeLogFile correctly if it is contained in a JAR
 -  [CORE-2279] - Rollback fails in MS SQL 2008 using liquibase 3.3.2
@@ -1005,13 +978,13 @@ Changes in version 3.3.1 (2014.12.08)
 - Other bugfixes
 
 - [CORE-1920] - SpringLiqubase includeAll is not including files
-- [CORE-2009] - ClassCastException when executing a custom task change (AntClassLoader problem)
+- [CORE-2009] - ClassCastException when executing a custom project change (AntClassLoader problem)
 - [CORE-2097] - "mvn liquibase:futureRollbackSQL" asks for tag, count or date
 - [CORE-2099] - SQLAnywhere support (Driver not capable)
 - [CORE-2103] - changelogSchemaName/changelogCatalogName configuration options will not work on Oracle DB
 - [CORE-2104] - ConcurrentModificationException iterating over System.getProperties().entrySet()
 - [CORE-2105] - Maven profile performing dropAll and update on Oracle failing with an error on populated database.
-- [CORE-2107] - LOWER() keyword fails on Postgres createIndex task
+- [CORE-2107] - LOWER() keyword fails on Postgres createIndex project
 - [CORE-2108] - dropAll command trying to drop column on table that has already been dropped
 - [CORE-2114] - AddAutoIncrement on Postgres does not work when changes are applied on a specific schema
 - [CORE-2116] - Could not find implementation of liquibase.logging.Logger
@@ -1987,7 +1960,7 @@ Changes in version 0.6 (2006.11.10)
 
 Changes in version 0.5.1 (2006.10.18)
 --------------------------------------
-- Bugfixes related to running ant task
+- Bugfixes related to running ant project
 
 Changes in version 0.5 (2006.10.16)
 --------------------------------------

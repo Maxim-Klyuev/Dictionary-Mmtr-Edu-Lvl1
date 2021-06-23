@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+    http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd ">
 
+    <changeSet id="create-table-latin_dictionary" author="mkluev">
+        <createTable tableName="latin_dictionary">
+            <column name="word" type="varchar(50)">
+                <constraints primaryKey="true" unique="true" nullable="false"/>
+            </column>
+            <column name="translations" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 
+    <changeSet id="create-table-digit-dictionary" author="mkluev">
+        <createTable tableName="digit_dictionary">
+            <column name="word" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="translations" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>

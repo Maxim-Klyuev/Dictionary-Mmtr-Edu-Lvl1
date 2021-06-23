@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+    http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd ">
 
+    <changeSet id="init_db" author="mkluev">
+        <tagDatabase tag="v.1.0"/>
+    </changeSet>
 
+    <include file="db_migrations/db_changelog/db-changelog-master.xml"/>
 
 </databaseChangeLog>
