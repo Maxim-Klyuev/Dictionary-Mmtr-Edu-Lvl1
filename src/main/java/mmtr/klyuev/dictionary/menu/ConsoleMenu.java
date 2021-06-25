@@ -1,5 +1,7 @@
-package mmtr.klyuev.dictionary;
+package mmtr.klyuev.dictionary.menu;
 
+import mmtr.klyuev.dictionary.dataStorage.DictionaryStorage;
+import mmtr.klyuev.dictionary.validate.AlphabetChecker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

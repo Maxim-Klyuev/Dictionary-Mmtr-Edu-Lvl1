@@ -1,5 +1,6 @@
-package mmtr.klyuev.dictionary;
+package mmtr.klyuev.dictionary.validate;
 
+import mmtr.klyuev.dictionary.config.ApplicationConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

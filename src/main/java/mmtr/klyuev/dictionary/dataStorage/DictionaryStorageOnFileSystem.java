@@ -1,4 +1,4 @@
-package mmtr.klyuev.dictionary;
+package mmtr.klyuev.dictionary.dataStorage;
 
 import java.io.*;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ public class DictionaryStorageOnFileSystem implements DictionaryStorage {
 
     private File dictionary;
 
-    DictionaryStorageOnFileSystem(String filePath) {
+    public DictionaryStorageOnFileSystem(String filePath) {
         dictionary = new File(filePath);
     }
 

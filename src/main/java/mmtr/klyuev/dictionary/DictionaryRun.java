@@ -1,5 +1,7 @@
 package mmtr.klyuev.dictionary;
 
+import mmtr.klyuev.dictionary.config.ApplicationConfig;
+import mmtr.klyuev.dictionary.menu.ConsoleMenu;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class DictionaryRun {

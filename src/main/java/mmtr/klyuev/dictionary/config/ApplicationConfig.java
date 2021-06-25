@@ -1,5 +1,7 @@
-package mmtr.klyuev.dictionary;
+package mmtr.klyuev.dictionary.config;
 
+import mmtr.klyuev.dictionary.dataStorage.DictionaryStorage;
+import mmtr.klyuev.dictionary.dataStorage.DictionaryStorageOnFileSystem;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

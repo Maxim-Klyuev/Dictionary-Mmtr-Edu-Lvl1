@@ -1,4 +1,4 @@
-package mmtr.klyuev.dictionary;
+package mmtr.klyuev.dictionary.dataStorage;
 
 
 public interface DictionaryStorage {
