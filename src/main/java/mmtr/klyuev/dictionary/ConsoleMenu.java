@@ -108,12 +108,6 @@ public class ConsoleMenu {
         String userInput = in.nextLine().trim().toLowerCase();
         useFormatter(userInput, TRANSLATE);
         System.out.println(dictionary.findWord(userInput));
-
-//        while (!userInput.equals("1") && !userInput.equals("2")) {
-//            useFormatter(userInput, TRANSLATE);
-//            showTemplate(ENTER_WORD_TRANSLATE + "\n" + LATIN_ALPHABET + "\n" + BACK + "\n" + EXIT);
-//            userInput = in.nextLine().trim().toLowerCase();
-//        }
     }
 
     private void addWord(DictionaryStorage dictionary) {
@@ -131,15 +125,6 @@ public class ConsoleMenu {
                 useFormatter(userInput, ADD);
             } else System.out.println(DIGIT_ALPHABET_INC);
         }
-
-//        while (!userInput.equals("1") && !userInput.equals("2")) {
-//            if (dictionaryMatchingCondition.checkOfDictionaryResponse(template, userInput)) {
-//                dictionaryStorageOnFileSystem.addWord(userInput);
-//                useFormatter(userInput, ADD);
-//            } else System.out.println(LATIN_ALPHABET_INC);
-//            showTemplate(ENTER_WORD_ADD + "\n" + BACK + "\n" + EXIT);
-//            userInput = in.nextLine().trim().toLowerCase();
-//        }
     }
 
     private void deleteWord(DictionaryStorage dictionary) {
