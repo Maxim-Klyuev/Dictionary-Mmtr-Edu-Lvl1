@@ -12,7 +12,7 @@ public interface ILatinDictionaryService {
 
     void addLatinEntry(LatinEntry latinEntry);
 
-    void updateLatinEntryById(Long id);
+    void updateLatinEntry(LatinEntry latinEntry);
 
     void deleteLatinEntryById(Long id);
 }

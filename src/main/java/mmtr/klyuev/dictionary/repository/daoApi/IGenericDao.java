@@ -9,6 +9,6 @@ public interface IGenericDao<T extends BaseEntry, N extends Number> {
     List<T> findAll();
     void add(T entry);
     void update(T entry);
-    void delete(T entry);
-    LatinEntry getById(N id);
+    void deleteById(N id);
+    T findById(N id);
 }

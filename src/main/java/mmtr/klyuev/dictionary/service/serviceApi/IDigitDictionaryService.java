@@ -12,7 +12,7 @@ public interface IDigitDictionaryService {
 
     void addDigitEntry(DigitEntry digitEntry);
 
-    void updateDigitEntryById(Long id);
+    void updateDigitEntry(DigitEntry digitEntry);
 
     void deleteDigitEntryById(Long id);
 }
